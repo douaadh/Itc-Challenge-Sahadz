@@ -18,4 +18,4 @@ const ServiceCard = ({ image, title, description, bgColor }) => {
   );
 };
 
-export default ServiceCard;0
+export default ServiceCard;
