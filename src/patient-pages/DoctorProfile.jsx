@@ -50,7 +50,7 @@ const DoctorProfile = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#F5F5FF]">
+    <div className="flex min-h-screen bg-[#E9E9F5]">
       <Sidebar />
       
       <div className="flex-1 p-8">

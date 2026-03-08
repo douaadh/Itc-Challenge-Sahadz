@@ -38,9 +38,10 @@ const FindDoctor = () => {
     <div className="flex min-h-screen bg-[#E9E9F5]">
       <Sidebar />
       
-      <div className="flex-1 p-8">
+      {/* Main Content - Removed p-8 padding, no border-radius */}
+      <div className="flex-1">
         {/* Header */}
-        <div className="mb-8">
+        <div className="mb-8 px-6 pt-6">
           <div className="flex items-center justify-between">
             {/* User Info - Left Side */}
             <div>
@@ -52,17 +53,17 @@ const FindDoctor = () => {
             <img 
               src="/user-profile.png" 
               alt="Profile" 
-              className="w-12 h-12 rounded-full object-cover shadow-md cursor-pointer hover:opacity-90 transition"
+              className="w-12 h-12 object-cover shadow-md cursor-pointer hover:opacity-90 transition"
               onError={(e) => {
                 e.target.onerror = null;
               }}
             />
           </div>
-          <div className="border-b border-gray-300 mt-4"></div>
+          <div className="border-b border-[#41256E] mt-4"></div>
         </div>
 
         {/* Search Section - Row 1: Search + Speciality */}
-        <div className="mb-4">
+        <div className="mb-4 px-6">
           <div className="flex gap-3">
             {/* Search Input */}
             <div className="flex-1 relative">
@@ -71,7 +72,7 @@ const FindDoctor = () => {
                 placeholder="search doctor"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full px-4 py-2.5 bg-[#E9E9F5] border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6D28D9] focus:border-transparent text-sm"
+                className="w-full px-4 py-2.5 bg-[#E9E9F5] border border-[#41256E] focus:outline-none focus:ring-2 focus:ring-[#6D28D9] text-sm"
               />
               <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
             </div>
@@ -80,7 +81,7 @@ const FindDoctor = () => {
             <select
               value={specialty}
               onChange={(e) => setSpecialty(e.target.value)}
-              className="px-5 py-2.5 bg-[#6D28D9] text-white rounded-lg border-none focus:outline-none focus:ring-2 focus:ring-[#6D28D9] cursor-pointer font-medium text-sm hover:bg-[#5a21a3] transition"
+              className="px-5 py-2.5 bg-[#6D28D9] text-white border border-[#41256E] focus:outline-none focus:ring-2 focus:ring-[#6D28D9] cursor-pointer font-medium text-sm hover:bg-[#5a21a3] transition"
             >
               <option value="">speciality</option>
               <option value="dermatology">Dermatology</option>
@@ -91,14 +92,14 @@ const FindDoctor = () => {
         </div>
 
         {/* Search Section - Row 2: Wilaya + City + Search Button */}
-        <div className="mb-6">
+        <div className="mb-6 px-6">
           <div className="flex gap-3 items-end">
             {/* Wilaya Dropdown */}
             <div className="w-[100px]">
               <select
                 value={wilaya}
                 onChange={(e) => setWilaya(e.target.value)}
-                className="w-full px-3 py-2 bg-[#E9E9F5] text-[#6D28D9] rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6D28D9] cursor-pointer font-medium text-xs"
+                className="w-full px-3 py-2 bg-[#E9E9F5] text-[#6D28D9] border border-[#41256E] focus:outline-none focus:ring-2 focus:ring-[#6D28D9] cursor-pointer font-medium text-xs"
               >
                 <option value="">wilaya</option>
                 <option value="blida">Blida</option>
@@ -112,7 +113,7 @@ const FindDoctor = () => {
               <select
                 value={city}
                 onChange={(e) => setCity(e.target.value)}
-                className="w-full px-3 py-2 bg-[#E9E9F5] text-[#6D28D9] rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#6D28D9] cursor-pointer font-medium text-xs"
+                className="w-full px-3 py-2 bg-[#E9E9F5] text-[#6D28D9] border border-[#41256E] focus:outline-none focus:ring-2 focus:ring-[#6D28D9] cursor-pointer font-medium text-xs"
               >
                 <option value="">city</option>
                 <option value="blida-centre">Blida Centre</option>
@@ -122,16 +123,16 @@ const FindDoctor = () => {
 
             {/* Search Button */}
             <button 
-              className="px-6 py-2.5 bg-[#6D28D9] text-white rounded-lg font-semibold hover:bg-[#5a21a3] transition shadow-sm ml-auto text-sm"
+              className="px-6 py-2.5 bg-[#6D28D9] text-white border border-[#41256E] font-semibold hover:bg-[#5a21a3] transition shadow-sm ml-auto text-sm"
             >
               Search
             </button>
           </div>
-          <div className="border-b border-gray-300 mt-10"></div>
+          <div className="border-b border-[#41256E] mt-10"></div>
         </div>
 
         {/* Doctors List */}
-        <div className="mb-8">
+        <div className="mb-8 px-6">
           <h2 className="text-xl font-semibold text-gray-900 mb-5">
             Showing most searched doctors
           </h2>
@@ -140,9 +141,8 @@ const FindDoctor = () => {
             {doctors.map((doctor) => (
               <div 
                 key={doctor.id}
-                className=" p-6 border border-[#41256E]/30 shadow-sm hover:shadow-md transition"
+                className="p-6 border border-[#41256E] shadow-sm hover:shadow-md transition"
               >
-               
                 <div className="flex items-start gap-4">
                   {/* Left Side: Avatar + Doctor Info */}
                   <div className="flex items-start gap-3 flex-1">
@@ -150,7 +150,7 @@ const FindDoctor = () => {
                     <img 
                       src="/user-profile.png" 
                       alt={doctor.name}
-                      className="w-12 h-12 rounded-full object-cover shadow-md flex-shrink-0"
+                      className="w-12 h-12 object-cover shadow-md flex-shrink-0"
                       onError={(e) => {
                         e.target.onerror = null;
                       }}
@@ -175,7 +175,7 @@ const FindDoctor = () => {
                     </div>
                   </div>
 
-                  {/* Right Side: Location Info - Moved closer */}
+                  {/* Right Side: Location Info */}
                   <div className="space-y-1.5 text-xs text-gray-600 text-right flex-shrink-0">
                     <div className="flex items-center justify-end gap-1.5">
                       <span>{doctor.location}</span>
@@ -193,18 +193,18 @@ const FindDoctor = () => {
                 </div>
 
                 {/* Bottom Row: Experience + Buttons */}
-                <div className="flex items-center gap-4 mt-4 pt-3 border-t border-gray-200">
+                <div className="flex items-center gap-4 mt-4 pt-3 ">
                   <span className="text-gray-600 text-sm font-medium">{doctor.experience}</span>
                   <div className="flex gap-2 ml-auto">
                     <button 
                       onClick={() => navigate(`/doctor-profile/${doctor.id}`)}
-                      className="px-5 py-2 bg-transparent border border-[#41256E] text-[#41256E] rounded-lg hover:bg-[#E9E9F5] transition font-medium text-sm"
+                      className="px-5 py-2 bg-transparent border border-[#41256E] text-[#41256E] hover:bg-[#E9E9F5] transition font-medium text-sm"
                     >
                       view profile
                     </button>
                     <button 
                       onClick={() => navigate(`/book-appointment/${doctor.id}`)}
-                      className="px-5 py-2 bg-[#6D28D9] text-white rounded-lg hover:bg-[#5a21a3] transition font-medium text-sm shadow-sm"
+                      className="px-5 py-2 bg-[#6D28D9] text-white border border-[#41256E] hover:bg-[#5a21a3] transition font-medium text-sm shadow-sm"
                     >
                       Book Appointment
                     </button>

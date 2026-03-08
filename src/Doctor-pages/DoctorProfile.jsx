@@ -49,7 +49,7 @@ const DoctorProfile = () => {
 
   return (
     <div className="flex min-h-screen bg-[#F5F5FF]">
-      {/* ✅ Sidebar - Fixed import path */}
+    
       <DoctorSidebar />
       
       {/* Main Content */}
