@@ -1,8 +1,8 @@
 import React, { useState } from 'react';  
-import { Link } from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';  // ✅ Added useNavigate
 
 const LoginPage = () => {  
+  const navigate = useNavigate();  // ✅ Initialize navigate hook
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -11,6 +11,9 @@ const LoginPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Login:', formData);
+    
+    // ✅ Navigate to Patient Dashboard after successful login
+    navigate('/patient-dashboard');
   };
 
   return (
@@ -20,7 +23,6 @@ const LoginPage = () => {
         <div className="text-center space-y-2">
           <div className="flex justify-center items-center space-x-2">
            <img 
-             
               src="/logo saha.png" 
               alt="SahaDz Logo" 
               className="h-28 mt-6 w-auto "
@@ -79,4 +81,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage; 
+export default LoginPage;

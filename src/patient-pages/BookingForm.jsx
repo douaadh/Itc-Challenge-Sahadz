@@ -58,33 +58,76 @@ const BookingForm = () => {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#F5F5FF]">
+    <div className="flex min-h-screen bg-[#E9E9F5]">
       <Sidebar />
       
-      <div className="flex-1 p-8">
+      <div className="flex-1 mr-10 p-8">
         <div className="max-w-3xl mx-auto">
-          {/* Header */}
+          {/* Header with Profile Image on Right */}
           <div className="mb-8">
-            <h1 className="text-2xl font-bold text-gray-800">Hello User!</h1>
-            <p className="text-gray-500 text-sm mt-1">Monday, March 09</p>
+            <div className="flex items-center justify-between">
+              {/* User Info - Left Side */}
+              <div>
+                <h1 className="text-3xl font-bold text-gray-800">Hello User!</h1>
+                <p className="text-gray-500 text-sm mt-1">Monday, March 09</p>
+              </div>
+              
+              {/* Profile Image - Right Side */}
+              <img 
+                src="/user-profile.png" 
+                alt="Profile" 
+                className="w-12 h-12 rounded-full object-cover shadow-md cursor-pointer hover:opacity-90 transition"
+                onError={(e) => {
+                  // Fallback if image fails to load
+                  e.target.onerror = null;
+                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%237B61FF' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
+                  e.target.classList.remove('hidden');
+                }}
+              />
+            </div>
+            <div className="border-b border-gray-300 mt-4"></div>
           </div>
 
-          {/* Book Appointment Title */}
+          {/* Book Appointment Title with Gradient Text */}
           <div className="flex items-center gap-3 mb-8">
             <FaCalendarAlt className="text-3xl text-[#7B61FF]" />
-            <h2 className="text-3xl font-bold text-[#6D28D9]">Book Appointment</h2>
+            <h2 
+              className="text-3xl font-extrabold bg-gradient-to-r from-[#6D28D9] to-[#41256E] bg-clip-text text-transparent"
+              style={{
+                background: 'linear-gradient(90deg, rgba(109, 40, 217, 0.95) 51.92%, rgba(65, 37, 110, 0.95) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text'
+              }}
+            >
+              Book Appointment
+            </h2>
           </div>
 
           <form onSubmit={handleSubmit}>
             {/* Select Date Section */}
-            <div className="bg-white rounded-2xl shadow-md p-6 mb-6 border border-gray-200">
-              <h3 className="text-lg font-semibold text-[#6D28D9] mb-4">Select Date</h3>
-              
-              {/* Calendar Container - Same background & border throughout */}
-              <div className="border border-gray-300 rounded-xl p-6 bg-[#F9F9FF]">
+            <div className="mb-6">
+              <div 
+                className="rounded-xl p-6 border"
+                style={{
+                  borderColor: 'rgba(109, 40, 217, 0.95)',
+                  boxShadow: '0px 4px 13.8px 0px #00000040'
+                }}
+              >
+                <h3 
+                  className="border-b pb-4 mb-6"
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: 'rgba(109, 40, 217, 0.95)',
+                    borderColor: 'rgba(109, 40, 217, 0.95)'
+                  }}
+                >
+                  Select Date
+                </h3>
                 
-                {/* Calendar Header - Same styling as body */}
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-300">
+                {/* Calendar Header */}
+                <div className="flex items-center justify-between mb-6 pb-4">
                   <div className="flex items-center gap-2">
                     <FaCalendarAlt className="text-gray-600" />
                     <span className="font-semibold text-gray-800">{currentMonth} 2026</span>
@@ -136,71 +179,115 @@ const BookingForm = () => {
             </div>
 
             {/* Select Time Section */}
-            <div className="bg-white rounded-2xl shadow-md p-6 mb-6 border border-gray-200">
-              <h3 className="text-lg font-semibold text-[#6D28D9] mb-4">Select Time</h3>
-              
-              <div className="grid grid-cols-3 gap-4">
-                {timeSlots.map((time) => (
-                  <button
-                    key={time}
-                    type="button"
-                    onClick={() => setSelectedTime(time)}
-                    className={`py-3 px-4 rounded-xl font-medium transition-all duration-200 ${
-                      selectedTime === time
-                        ? 'bg-[#7B61FF] text-white shadow-md'
-                        : 'bg-[#6D28D9]/20 text-[#6D28D9] hover:bg-[#6D28D9]/30'
-                    }`}
-                  >
-                    {time}
-                  </button>
-                ))}
+            <div className="mb-6">
+              <div 
+                className="rounded-xl p-6 border"
+                style={{
+                  borderColor: 'rgba(109, 40, 217, 0.95)',
+                  boxShadow: '0px 4px 8.1px 0px #00000040'
+                }}
+              >
+                <h3 
+                  className="border-b pb-4 mb-4"
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: 'rgba(109, 40, 217, 0.95)',
+                    borderColor: 'rgba(109, 40, 217, 0.95)'
+                  }}
+                >
+                  Select Time
+                </h3>
+                
+                <div className="grid grid-cols-3 gap-4">
+                  {timeSlots.map((time) => (
+                    <button
+                      key={time}
+                      type="button"
+                      onClick={() => setSelectedTime(time)}
+                      className="py-2 px-4 rounded-lg text-sm font-medium transition-all duration-200"
+                      style={{
+                        backgroundColor: selectedTime === time ? '#7B61FF' : 'rgba(109, 40, 217, 0.12)',
+                        color: selectedTime === time ? '#FFFFFF' : 'rgba(109, 40, 217, 0.95)'
+                      }}
+                    >
+                      {time}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
             {/* Patient Information Section */}
-            <div className="bg-white rounded-2xl shadow-md p-6 mb-6 border border-gray-200">
-              <h3 className="text-lg font-semibold text-[#6D28D9] mb-4">Patient Information</h3>
-              
-              <div className="space-y-4">
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Full Name
-                  </label>
-                  <input
-                    type="text"
-                    name="fullName"
-                    value={formData.fullName}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-[#6D28D9]/10 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent"
-                    placeholder="Enter your full name"
-                    required
-                  />
-                </div>
+            <div className="mb-6">
+              <div 
+                className="rounded-xl p-6 border"
+                style={{
+                  borderColor: 'rgba(109, 40, 217, 0.95)',
+                  boxShadow: '0px 4px 8.1px 0px #00000040'
+                }}
+              >
+                <h3 
+                  className="border-b pb-4 mb-4"
+                  style={{
+                    fontSize: '16px',
+                    fontWeight: '500',
+                    color: 'rgba(109, 40, 217, 0.95)',
+                    borderColor: 'rgba(109, 40, 217, 0.95)'
+                  }}
+                >
+                  Patient Information
+                </h3>
                 
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Phone Number
-                  </label>
-                  <input
-                    type="tel"
-                    name="phoneNumber"
-                    value={formData.phoneNumber}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 bg-[#6D28D9]/10 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent"
-                    placeholder="05XXXXXXXX"
-                    required
-                  />
+                <div className="space-y-4">
+                  <div>
+                    <input
+                      type="text"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent text-sm"
+                      style={{
+                        backgroundColor: 'rgba(109, 40, 217, 0.06)',
+                        borderColor: 'rgba(109, 40, 217, 0.3)'
+                      }}
+                      placeholder="Full Name"
+                      required
+                    />
+                  </div>
+                  
+                  <div>
+                    <input
+                      type="tel"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
+                      onChange={handleInputChange}
+                      className="w-full px-4 py-2.5 border rounded-lg focus:outline-none focus:ring-2 focus:ring-[#7B61FF] focus:border-transparent text-sm"
+                      style={{
+                        backgroundColor: 'rgba(109, 40, 217, 0.06)',
+                        borderColor: 'rgba(109, 40, 217, 0.3)'
+                      }}
+                      placeholder="Phone Number"
+                      required
+                    />
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Confirm Button */}
-            <button
-              type="submit"
-              className="w-full py-4 bg-[#7B61FF] text-white rounded-xl hover:bg-[#6D28D9] transition-all duration-200 font-semibold text-lg shadow-md hover:shadow-lg"
-            >
-              Confirm Appointment
-            </button>
+            {/* Confirm Button - Aligned to Right */}
+            <div className="flex justify-end">
+              <button
+                type="submit"
+                className="px-8 py-2.5 rounded-lg font-medium text-sm transition-all duration-200 shadow-md hover:shadow-lg"
+                style={{
+                  backgroundColor: '#7B61FF',
+                  color: '#FFFFFF'
+                }}
+              >
+                Confirm Appointment
+              </button>
+            </div>
           </form>
         </div>
       </div>

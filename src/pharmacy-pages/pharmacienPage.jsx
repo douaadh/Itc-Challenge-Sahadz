@@ -45,22 +45,29 @@ const PharmacienPage = () => {
       
       <div className="flex-1 p-8">
         {/* Header */}
-        <div className="mb-8 pb-4 border-b border-gray-300">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-2xl font-bold text-gray-800">Hello User!</h1>
-              <p className="text-gray-500 text-sm mt-1">Monday, March 09</p>
-            </div>
-            {/* User Profile Icon */}
-            <div className="w-20 h-20  flex items-center justify-center">
+         <div className="mb-8">
+            <div className="flex items-center justify-between">
+              {/* User Info - Left Side */}
+              <div>
+                <h1 className="text-3xl font-bold text-gray-800">Hello User!</h1>
+                <p className="text-gray-500 text-sm mt-1">Monday, March 09</p>
+              </div>
+              
+              {/* Profile Image - Right Side */}
               <img 
                 src="/user-profile.png" 
-                alt="User" 
-                className="w-6 h-6 object-contain"
+                alt="Profile" 
+                className="w-12 h-12 rounded-full object-cover shadow-md cursor-pointer hover:opacity-90 transition"
+                onError={(e) => {
+                  // Fallback if image fails to load
+                  e.target.onerror = null;
+                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%237B61FF' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
+                  e.target.classList.remove('hidden');
+                }}
               />
             </div>
+            <div className="border-b border-gray-300 mt-4"></div>
           </div>
-        </div>
 
         {/* Search Section */}
         <div className="p-2 mb-8">
@@ -116,7 +123,7 @@ const PharmacienPage = () => {
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 flex items-center justify-center flex-shrink-0">
                       <img 
-                        src="/Group.png" 
+                        src="/Group-1.png" 
                         alt="Pharmacy" 
                         className="w-8 h-8 object-contain"
                       />

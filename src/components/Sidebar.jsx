@@ -9,36 +9,35 @@ const Sidebar = () => {
     { 
       path: '/find-doctors', 
       label: 'Find Doctors', 
-      icon: '/fluent_patient-32-filled.png'
+      icon: '/Expert.png'
     },
     { 
-      path: '/pharmacies', 
+      path: '/pharmacien',  // ✅ Changed from '/pharmacies' to '/pharmacien'
       label: 'Nearby Pharmacies', 
-      icon: '/healthicons_pharmacy-outline-24px.png'
+      icon: '/Group.png'
     },
     { 
       path: '/health-associations', 
       label: 'Health Associations', 
-      icon: '/Group.png'
+      icon: '/Vector-1.png'
     },
     { 
       path: '/instant-consultation', 
       label: 'Instant Consultation', 
-      icon: '/boxicons_community-filled.png'
+      icon: '/si_ai-fill.png'
     },
   ];
 
   return (
     <aside className="w-72 min-h-screen p-4 flex flex-col shadow-lg bg-[#6D28D93B]">
       {/* Logo Section */}
-      <div className="flex items-center gap-2 mb-8 px-2 ">
+      <div className="flex items-center gap-2 mb-8 px-2">
         <img 
-            src="/logo saha.svg" 
-            alt="SahaDz Logo" 
-            className="w-full h-full object-contain"
-          />
-        </div>
-       
+          src="/logo saha.svg" 
+          alt="SahaDz Logo" 
+          className="w-full h-full object-contain"
+        />
+      </div>
     
       {/* Menu Items */}
       <nav className="space-y-1 flex-1">
@@ -49,22 +48,37 @@ const Sidebar = () => {
             <button
               key={index}
               onClick={() => navigate(item.path)}
-              className={`w-full flex items-center gap-8 px-5 py-4 rounded-xl transition-all duration-300 group text-[#6D28D9]/23 ${
+              className={`w-full flex items-center gap-8 px-5 py-4 transition-all duration-300 group relative ${
                 isActive
-                  ? 'bg-[#7B61FF] text-white shadow-lg'
-                  : 'text-[#4A4A4A] hover:bg-[#6D28D93B] hover:shadow-md'
+                  ? 'bg-[#760EAFC4] text-white shadow-lg'
+                  : 'text-[#6D28D9]/23'
               }`}
+              style={{
+                borderLeft: isActive ? '13px solid #41256EF2' : '13px solid transparent',
+                borderRadius: isActive ? '0px 12px 12px 0px' : '12px'
+              }}
+              onMouseEnter={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.borderLeft = '13px solid #41256EF2';
+                  e.currentTarget.style.borderRadius = '0px 12px 12px 0px';
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (!isActive) {
+                  e.currentTarget.style.borderLeft = '13px solid transparent';
+                  e.currentTarget.style.borderRadius = '12px';
+                }
+              }}
             >
               <div 
-                className={`w-8 h-8 flex items-center justify-center transition-transform duration-300 group-hover:scale-110 ${
-                  isActive ? 'filter brightness-0 invert' :  ''
-                  
-                }`}
+                className={`w-8 h-8 flex items-center justify-center transition-transform duration-300 group-hover:scale-110`}
               >
                 <img 
                   src={item.icon} 
                   alt={item.label}
-                  className="w-full h-full object-contain"
+                  className={`w-full h-full object-contain ${
+                    isActive ? 'filter brightness-0 invert' : ''
+                  }`}
                 />
               </div>
               <span className={`font-semibold ${
@@ -76,8 +90,6 @@ const Sidebar = () => {
           );
         })}
       </nav>
-
-      
     </aside>
   );
 };

@@ -33,7 +33,7 @@ const Hero = () => {
 
           {/* UPDATED BUTTON WITH NAVIGATION */}
           <button 
-            onClick={() => navigate('/find-doctors')} // ← Add this
+            onClick={() => navigate('/find-doctors')} // 
             className="px-12 py-4 bg-purple-700 text-white rounded-xl font-semibold text-xl 
               hover:bg-purple-800 transform hover:scale-105 transition shadow-lg hover:shadow-xl 
               cursor-pointer"
