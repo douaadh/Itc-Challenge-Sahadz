@@ -27,10 +27,10 @@ const Sidebar = ({ role = 'patient' }) => {
   const menuItems = menus[role] || menus.patient;
 
   return (
-    <aside className="w-72 min-h-screen flex flex-col shadow-lg bg-[#6D28D93B] border-r border-[rgba(65,37,110,0.2)]">
+    <aside className="w-96 min-h-screen flex flex-col shadow-lg bg-[#6D28D93B] border-r border-[rgba(65,37,110,0.2)]">
       {/* Logo */}
-      <div className="flex items-center gap-2 mb-8 px-4 pt-6">
-        <img src="/logo saha.svg" alt="SahaDz" className="h-16 w-auto" />
+      <div className="flex items-center gap-2 ">
+        <img src="/logo saha.svg" alt="SahaDz" className="h-64 w-auto" />
       </div>
 
       {/* Menu Items */}
