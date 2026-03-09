@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaStar } from 'react-icons/fa';
+import { FaStar, FaPhone } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
 
 const PharmacienPage = () => {
@@ -41,7 +41,7 @@ const PharmacienPage = () => {
 
   return (
     <div className="flex min-h-screen bg-[#F5F5FF]">
-      <Sidebar />
+      <Sidebar role="patient" />
       
       <div className="flex-1 p-8">
         {/* Header */}
@@ -61,7 +61,7 @@ const PharmacienPage = () => {
                 onError={(e) => {
                   // Fallback if image fails to load
                   e.target.onerror = null;
-                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%237B61FF' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
+                  e.target.src = "image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%237B61FF' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
                   e.target.classList.remove('hidden');
                 }}
               />
@@ -178,6 +178,31 @@ const PharmacienPage = () => {
           />
           <span className="text-lg font-semibold">+213 - 14</span>
         </div>
+      </div>
+
+      {/* 🚨 Emergency Button - Added Only This Section */}
+      <div className="fixed bottom-8 right-8 flex flex-col items-center gap-2 z-50">
+        <span className="text-white font-semibold text-xs bg-red-600 px-3 py-1 rounded-full shadow-lg">
+          +213 - 14
+        </span>
+        <button 
+          className="w-16 h-16  hover:bg-red-700 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse border-4 border-white"
+          onClick={() => alert('🚨 Emergency: Calling +213-14')}
+        >
+          <img 
+            src="/emergency.png" 
+            alt="Emergency" 
+            className="w-10 h-10 object-contain"
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'block';
+            }}
+          />
+          <FaPhone className="text-2xl text-white hidden" />
+        </button>
+        <span className="text-white font-bold text-xs bg-red-600 px-4 py-1 rounded-full shadow-lg">
+          Emergency
+        </span>
       </div>
     </div>
   );

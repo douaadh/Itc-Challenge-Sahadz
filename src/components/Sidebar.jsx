@@ -21,11 +21,7 @@ const Sidebar = ({ role = 'patient' }) => {
       { path: '/doctor-appointments', label: 'Appointment', icon: '/appointments-icon.png' },
       
     ],
-    pharmacist: [
-      { path: '/pharmacy-interface', label: 'Dashboard', icon: '/dashboard-icon.png' },
-      { path: '/pharmacy-inventory', label: 'Inventory', icon: '/inventory-icon.png' },
-      { path: '/pharmacy-profile', label: 'Profile', icon: '/profile-icon.png' },
-    ],
+    
   };
 
   const menuItems = menus[role] || menus.patient;

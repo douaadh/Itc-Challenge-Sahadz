@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Sidebar from '../components/Sidebar';
-import { FaUserCircle, FaCalendarAlt, FaClock, FaChevronDown, FaCalendarPlus } from 'react-icons/fa';
+import { FaUserCircle, FaCalendarAlt, FaClock, FaChevronDown, FaCalendarPlus, FaPhone } from 'react-icons/fa';
 
 const PatientDashboard = () => {
   const [appointments, setAppointments] = useState([
@@ -31,8 +31,8 @@ const PatientDashboard = () => {
   ]);
 
   return (
-    <div className="flex min-h-screen bg-[#E9E9F5]">
-      <Sidebar />
+    <div className="flex min-h-screen bg-[#E9E9F5] relative">
+      <Sidebar role="patient" />
       
       <div className="flex-1 p-8">
         <div className="max-w-6xl mx-auto">
@@ -95,7 +95,6 @@ const PatientDashboard = () => {
                     </div>
                     <div>
                       <h3 className="font-bold text-gray-800 text-base">{appointment.doctorName}</h3>
-                      {/* ✅ Specialty text color changed */}
                       <p className="text-sm" style={{ color: 'rgba(65, 37, 110, 1)' }}>
                         {appointment.specialty}
                       </p>
@@ -105,12 +104,10 @@ const PatientDashboard = () => {
                   {/* Date and Time */}
                   <div className="space-y-3 mb-4">
                     <div className="flex items-center gap-2 text-gray-600">
-                      {/* ✅ Calendar icon color changed */}
                       <FaCalendarAlt style={{ color: 'rgba(65, 37, 110, 1)' }} />
                       <span className="text-sm">{appointment.date}</span>
                     </div>
                     <div className="flex items-center gap-2 text-gray-600">
-                      {/* ✅ Clock icon color changed */}
                       <FaClock style={{ color: 'rgba(65, 37, 110, 1)' }} />
                       <span className="text-sm">{appointment.time}</span>
                     </div>
@@ -128,6 +125,27 @@ const PatientDashboard = () => {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Emergency Button - Fixed Bottom Right */}
+      <div className="fixed bottom-8 right-8 flex flex-col items-center gap-2 z-50">
+        {/* Emergency Phone Number */}
+        <span className="text-white font-semibold text-sm bg-red-600 px-3 py-1 rounded-full shadow-lg">
+          +213 - 14
+        </span>
+        
+        {/* Emergency Button */}
+        <button 
+          className="w-16 h-16 bg-red-600 hover:bg-red-700 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse"
+          onClick={() => alert('Emergency: Call +213-14')}
+        >
+          <FaPhone className="text-3xl text-white" />
+        </button>
+        
+        {/* Emergency Label */}
+        <span className="text-white font-bold text-sm bg-red-600 px-4 py-1 rounded-full shadow-lg">
+          Emergency
+        </span>
       </div>
     </div>
   );

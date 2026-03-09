@@ -43,7 +43,7 @@ const DoctorProfilePage = () => {
   return (
     <div className="flex min-h-screen" style={{ backgroundColor: '#E9E9F5' }}>
       {/* Sidebar */}
-      <Sidebar type="doctor" />
+      <Sidebar role="doctor" />
 
       {/* Main Content */}
       <div className="flex-1 p-6">

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FaMapMarkerAlt, FaHospitalAlt, FaClock, FaSearch, FaStar } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaHospitalAlt, FaClock, FaSearch, FaStar, FaPhone } from 'react-icons/fa';
 import Sidebar from '../components/Sidebar';
 
 const FindDoctor = () => {
@@ -214,7 +214,34 @@ const FindDoctor = () => {
             ))}
           </div>
         </div>
+        
       </div>
+
+      {/* 🚨 Emergency Button - Added Only This Section */}
+      <div className="fixed bottom-8 right-8 flex flex-col items-center gap-2 z-50">
+        <span className="text-white font-semibold text-xs bg-red-600 px-3 py-1 rounded-full shadow-lg">
+          +213 - 14
+        </span>
+        <button 
+          className="w-16 h-16  hover:bg-red-700 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 animate-pulse border-4 border-white"
+          onClick={() => alert('🚨 Emergency: Calling +213-14')}
+        >
+          <img 
+            src="/emergency.png" 
+            alt="Emergency" 
+            className="w-10 h-10 object-contain"
+            onError={(e) => {
+              e.target.style.display = 'none';
+              e.target.nextSibling.style.display = 'block';
+            }}
+          />
+          <FaPhone className="text-2xl text-white hidden" />
+        </button>
+        <span className="text-white font-bold text-xs bg-red-600 px-4 py-1 rounded-full shadow-lg">
+          Emergency
+        </span>
+      </div>
+      
     </div>
   );
 };

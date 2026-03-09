@@ -29,7 +29,7 @@ const DoctorPatients = () => {
   return (
     <div className="flex min-h-screen bg-[#F5F5FF]">
       {/* Sidebar */}
-      <Sidebar type="doctor" />
+      <Sidebar role="doctor" />
 
       {/* Main Content */}
       <div className="flex-1 ml-8 p-8">
