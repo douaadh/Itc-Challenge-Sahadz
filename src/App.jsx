@@ -11,10 +11,10 @@ import Login from './components/LoginPage';
 import Registre from './components/RegistrePage';
 
 // Patient Pages
-import PatientDashboard from './Patient-pages/PatientDashboard';
-import FindDoctor from './Patient-pages/FindDoctor';
+import PatientDashboard from './patient-pages/PatientDashboard';
+import FindDoctor from './patient-pages/FindDoctor';
 import PatientDoctorProfile from './patient-pages/DoctorProfile-patient';
-import BookingForm from './Patient-pages/BookingForm';
+import BookingForm from './patient-pages/BookingForm';
 
 // Pharmacy Pages
 import PharmaInterface from './pharmacy-pages/pharma-interface';

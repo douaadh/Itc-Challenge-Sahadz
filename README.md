@@ -47,7 +47,7 @@ The project focuses on building a Minimum Viable Product (MVP) that demonstrates
 
 ---
 
-# Tech Stack
+
 # Tech Stack
 
 ### Frontend
