@@ -186,14 +186,14 @@ npm run dev
 
 # Live Demo
 
-https://vercel.com/douaadhs-projects
+[https://vercel.com/douaadhs-projects](https://itc-challenge-sahadz.vercel.app/)
 
 ---
 
 # Author
 
 Douaa  
-ITC Challenge Project
+ITC Challenge SahaDz
 
 GitHub:  
 https://github.com/douaadh
