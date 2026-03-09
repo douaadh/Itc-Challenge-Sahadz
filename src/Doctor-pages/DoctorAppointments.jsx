@@ -57,43 +57,11 @@ const DoctorAppointments = () => {
   return (
     <div className="flex min-h-screen bg-[#F5F5FF]">
       {/* Sidebar */}
-      <div className="w-64 bg-white h-screen shadow-lg fixed left-0 top-0 flex flex-col z-50">
-        {/* Logo */}
-        <div className="p-6 border-b" style={{ borderColor: '#41256E' }}>
-          <h1 className="text-2xl font-bold" style={{ color: '#6D28D9' }}>SahaDz</h1>
-        </div>
-
-        {/* Menu Items */}
-        <nav className="flex-1 p-4 space-y-2">
-          <button
-            onClick={() => navigate('/doctor-dashboard')}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-gray-600 hover:bg-[#6D28D9]/10"
-          >
-            <FaClipboardList className="text-lg" />
-            <span className="font-medium">Dashboard</span>
-          </button>
-          
-          <button
-            onClick={() => navigate('/doctor-patients')}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-gray-600 hover:bg-[#6D28D9]/10"
-          >
-            <FaUserInjured className="text-lg" />
-            <span className="font-medium">Patients</span>
-          </button>
-          
-          <button
-            onClick={() => navigate('/doctor-appointments')}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200"
-            style={{ backgroundColor: '#6D28D9', color: 'white' }}
-          >
-            <FaCalendar className="text-lg" />
-            <span className="font-medium">Appointment</span>
-          </button>
-        </nav>
-      </div>
+      <Sidebar role="doctor" />
+     
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 p-8">
+      <div className="flex-1 ml-8 p-8">
         {/* Top Header */}
         <div className="flex items-center justify-between mb-8">
           {/* Search Bar */}
@@ -177,8 +145,8 @@ const DoctorAppointments = () => {
                     <span 
                       className="px-4 py-1.5 rounded-lg text-xs font-medium"
                       style={{ 
-                        backgroundColor: getStatusColor(appointment.status),
-                        color: 'white'
+                        color: getStatusColor(appointment.status),
+                        
                       }}
                     >
                       {appointment.status}

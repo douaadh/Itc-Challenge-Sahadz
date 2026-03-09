@@ -67,43 +67,10 @@ const DoctorDashboard = () => {
   return (
     <div className="flex min-h-screen bg-[#F5F5FF]">
       {/* Sidebar */}
-      <div className="w-64 bg-white h-screen shadow-lg fixed left-0 top-0 flex flex-col z-50">
-        {/* Logo */}
-        <div className="p-6 border-b" style={{ borderColor: '#41256E' }}>
-          <h1 className="text-2xl font-bold" style={{ color: '#6D28D9' }}>SahaDz</h1>
-        </div>
-
-        {/* Menu Items */}
-        <nav className="flex-1 p-4 space-y-2">
-          <button
-            onClick={() => navigate('/doctor-dashboard')}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200"
-            style={{ backgroundColor: '#6D28D9', color: 'white' }}
-          >
-            <FaChartLine className="text-lg" />
-            <span className="font-medium">Dashboard</span>
-          </button>
-          
-          <button
-            onClick={() => navigate('/doctor-patients')}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-gray-600 hover:bg-[#6D28D9]/10"
-          >
-            <FaUsers className="text-lg" />
-            <span className="font-medium">Patients</span>
-          </button>
-          
-          <button
-            onClick={() => navigate('/doctor-appointments')}
-            className="w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 text-gray-600 hover:bg-[#6D28D9]/10"
-          >
-            <FaCalendar className="text-lg" />
-            <span className="font-medium">Appointment</span>
-          </button>
-        </nav>
-      </div>
+      <Sidebar role="doctor"/>
 
       {/* Main Content */}
-      <div className="flex-1 ml-64 p-8">
+      <div className="flex-1 ml-8 p-8">
         {/* Top Header */}
         <div className="flex items-center justify-between mb-8">
           {/* Search Bar */}
@@ -142,9 +109,19 @@ const DoctorDashboard = () => {
             </div>
 
             {/* Profile */}
-            <div className="flex items-center gap-3 pl-6" style={{ borderLeft: '1px solid #41256E' }}>
-              <div className="w-12 h-12 rounded-full bg-[#6D28D9] flex items-center justify-center">
-                <span className="text-white text-xl font-bold">DA</span>
+            <div className="flex items-center gap-3 pl-6" >
+              <img 
+                src="/user-profile.png" 
+                alt="Profile" 
+                className="w-12 h-12 rounded-full object-cover shadow-md cursor-pointer hover:opacity-90 transition"
+                onError={(e) => {
+                  // Fallback if image fails to load
+                  e.target.onerror = null;
+                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%237B61FF' viewBox='0 0 24 24'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E";
+                  e.target.classList.remove('hidden');
+                }}
+              />
+               
               </div>
               <div>
                 <h3 className="font-bold text-gray-800">Dr. Amine</h3>
@@ -152,7 +129,7 @@ const DoctorDashboard = () => {
               </div>
             </div>
           </div>
-        </div>
+       
 
         {/* Welcome Message */}
         <div className="mb-6">
@@ -165,7 +142,7 @@ const DoctorDashboard = () => {
           <div className="rounded-xl p-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.2)' }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-1">Today's Appointments</p>
+                <p className="text-xl font-medium text-gray-800 mb-1">Today's Appointments</p>
                 <p className="text-3xl font-bold" style={{ color: '#41256E' }}>{stats.todayAppointments}</p>
               </div>
               <FaCalendar className="text-3xl" style={{ color: '#6D28D9' }} />
@@ -176,7 +153,7 @@ const DoctorDashboard = () => {
           <div className="rounded-xl p-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.2)' }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-1">Total Patients</p>
+                <p className="text-xl font-medium text-gray-800 mb-1">Total Patients</p>
                 <p className="text-3xl font-bold" style={{ color: '#41256E' }}>{stats.totalPatients}</p>
               </div>
               <FaUsers className="text-3xl" style={{ color: '#6D28D9' }} />
@@ -187,7 +164,7 @@ const DoctorDashboard = () => {
           <div className="rounded-xl p-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.2)' }}>
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-gray-700 mb-1">Pending Patients</p>
+                <p className="text-xl font-medium text-gray-800 mb-1">Pending Patients</p>
                 <p className="text-3xl font-bold" style={{ color: '#41256E' }}>{stats.pendingPatients}</p>
               </div>
               <FaUserClock className="text-3xl" style={{ color: '#6D28D9' }} />
@@ -269,14 +246,14 @@ const DoctorDashboard = () => {
                       <button 
                         onClick={() => handleRejectRequest(request.id)}
                         className="flex-1 py-2 rounded-lg font-medium transition"
-                        style={{ backgroundColor: '#ef4444', color: 'white' }}
+                        style={{  color: 'black' }}
                       >
                         <FaTimes className="inline mr-1" />
                       </button>
                       <button 
                         onClick={() => handleAcceptRequest(request.id)}
                         className="flex-1 py-2 rounded-lg font-medium transition"
-                        style={{ backgroundColor: '#10b981', color: 'white' }}
+                        style={{  color: 'black' }}
                       >
                         <FaCheck className="inline mr-1" />
                       </button>

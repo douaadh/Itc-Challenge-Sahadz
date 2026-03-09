@@ -1,51 +1,45 @@
+// src/components/Sidebar.jsx
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 
-const Sidebar = ({ menuItems }) => {
+const Sidebar = ({ role = 'patient' }) => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Default menu items for regular users
-  const defaultMenuItems = [
-    { 
-      path: '/find-doctors', 
-      label: 'Find Doctors', 
-      icon: '/Expert.png'
-    },
-    { 
-      path: '/pharmacien',
-      label: 'Nearby Pharmacies', 
-      icon: '/Group.png'
-    },
-    { 
-      path: '/health-associations', 
-      label: 'Health Associations', 
-      icon: '/Vector-1.png'
-    },
-    { 
-      path: '/instant-consultation', 
-      label: 'Instant Consultation', 
-      icon: '/si_ai-fill.png'
-    },
-  ];
+  // Menus selon le rôle
+  const menus = {
+    patient: [
+      
+      { path: '/find-doctors', label: 'Find Doctors', icon: '/Expert.png' },
+      { path: '/pharmacien', label: 'Nearby Pharmacies', icon: '/Group.png' },
+      { path: '/health-associations', label: 'Health Associations', icon: '/Vector-1.png' },
+      { path: '/instant-consultation', label: 'Instant Consultation', icon: '/si_ai-fill.png' },
+    ],
+    doctor: [
+      { path: '/doctor-dashboard', label: 'Dashboard', icon: '/Vector-4.png' },
+      { path: '/doctor-patients', label: 'Patients', icon: '/patients-icon.png' },
+      { path: '/doctor-appointments', label: 'Appointment', icon: '/appointments-icon.png' },
+      
+    ],
+    pharmacist: [
+      { path: '/pharmacy-interface', label: 'Dashboard', icon: '/dashboard-icon.png' },
+      { path: '/pharmacy-inventory', label: 'Inventory', icon: '/inventory-icon.png' },
+      { path: '/pharmacy-profile', label: 'Profile', icon: '/profile-icon.png' },
+    ],
+  };
 
-  // Use provided menuItems or default to user menu
-  const items = menuItems || defaultMenuItems;
+  const menuItems = menus[role] || menus.patient;
 
   return (
     <aside className="w-72 min-h-screen flex flex-col shadow-lg bg-[#6D28D93B] border-r border-[rgba(65,37,110,0.2)]">
-      {/* Logo Section */}
-      <div className="flex items-center gap-2 mb-8 px-4 pt-4">
-        <img 
-          src="/logo saha.svg" 
-          alt="SahaDz Logo" 
-          className="w-full h-full object-contain"
-        />
+      {/* Logo */}
+      <div className="flex items-center gap-2 mb-8 px-4 pt-6">
+        <img src="/logo saha.svg" alt="SahaDz" className="h-16 w-auto" />
       </div>
-    
+
       {/* Menu Items */}
       <nav className="space-y-1 flex-1">
-        {items.map((item, index) => {
+        {menuItems.map((item, index) => {
           const isActive = location.pathname === item.path;
           
           return (
@@ -62,26 +56,24 @@ const Sidebar = ({ menuItems }) => {
                 }
               `}
             >
-              <div 
-                className={`w-8 h-8 flex items-center justify-center flex-shrink-0 transition-transform duration-300 group-hover:scale-110`}
-              >
-                <img 
-                  src={item.icon} 
-                  alt={item.label}
-                  className={`w-full h-full object-contain ${
-                    isActive ? 'filter brightness-0 invert' : ''
-                  }`}
-                />
+              <div className="w-8 h-8 flex items-center justify-center flex-shrink-0">
+                <img src={item.icon} alt="" className="w-full h-full object-contain" />
               </div>
-              <span className={`font-semibold text-left flex-1 ${
-                isActive ? 'text-white' : 'text-[#41256E] group-hover:text-white'
-              }`}>
-                {item.label}
-              </span>
+              <span className="font-semibold text-left flex-1">{item.label}</span>
             </button>
           );
         })}
       </nav>
+
+      {/* Back to Home */}
+      <div className="p-4 border-t border-[#41256E]/20">
+        <button
+          onClick={() => navigate('/')}
+          className="w-full py-3 text-[#6D28D9] font-medium hover:bg-[#6D28D9]/10 rounded-lg transition"
+        >
+          Back to Home
+        </button>
+      </div>
     </aside>
   );
 };

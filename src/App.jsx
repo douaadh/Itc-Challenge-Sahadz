@@ -11,20 +11,21 @@ import Login from './components/LoginPage';
 import Registre from './components/RegistrePage';
 
 // Patient Pages
-import PatientDashboard from './patient-pages/PatientDashboard';
-import FindDoctor from './patient-pages/FindDoctor';
-import DoctorProfile from './patient-pages/DoctorProfile';  
-import BookingForm from './patient-pages/BookingForm';
+import PatientDashboard from './Patient-pages/PatientDashboard';
+import FindDoctor from './Patient-pages/FindDoctor';
+import PatientDoctorProfile from './patient-pages/DoctorProfile-patient';
+import BookingForm from './Patient-pages/BookingForm';
 
 // Pharmacy Pages
-import DoctorSidebar from "./components/DoctorSidebar";
-import PharmacienPage from './pharmacy-pages/pharmacienPage';
+import PharmaInterface from './pharmacy-pages/pharma-interface';
+import PharmacienPage from './pharmacy-pages/pharmacienPage-for patient';
 
 // Doctor Pages
 import DoctorDashboard from './Doctor-pages/DoctorDashboard';
 import DoctorPatients from './Doctor-pages/DoctorPatients';
-import PatientMedicalRecord from './Doctor-pages/DoctorProfile'; 
-import DoctorAppointments from './Doctor-pages/DoctorAppointments'; 
+import PatientMedicalRecord from './Doctor-pages/DoctorProfile';
+import DoctorAppointments from './Doctor-pages/DoctorAppointments';
+import DoctorProfilePage from './Doctor-pages/DoctorProfile';
 
 function App() {
   return (
@@ -34,7 +35,6 @@ function App() {
         <Route path="/" element={
           <>
             <Navbar />
-            
             <Hero />
             <Services />
             <StatisticsSection />
@@ -43,27 +43,24 @@ function App() {
         } />
         
         <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Registre />} />
+       <Route path="/registre" element={<Registre />} /> 
         
         {/* ===== PATIENT ROUTES ===== */}
         <Route path="/patient-dashboard" element={<PatientDashboard />} />
         <Route path="/find-doctors" element={<FindDoctor />} />
-        <Route path="/doctor-profile/:id" element={<DoctorProfile />} />
+        <Route path="/doctor-profile/:id" element={<PatientDoctorProfile />} />
         <Route path="/book-appointment/:id" element={<BookingForm />} />
         
         {/* ===== PHARMACY ROUTES ===== */}
         <Route path="/pharmacien" element={<PharmacienPage />} />
+        <Route path="/pharmacy-interface" element={<PharmaInterface />} />
         
         {/* ===== DOCTOR ROUTES ===== */}
+        <Route path="/doctor-profile" element={<DoctorProfilePage />} />
         <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
         <Route path="/doctor-patients" element={<DoctorPatients />} />
         <Route path="/doctor-patient-profile/:id" element={<PatientMedicalRecord />} />
         <Route path="/doctor-appointments" element={<DoctorAppointments />} />
-        {/* ===== HEALTH ASSOCIATIONS ROUTE (Future) ===== */}
-        {/* <Route path="/health-associations" element={<HealthAssociations />} /> */}
-        
-        {/* ===== INSTANT CONSULTATION ROUTE (Future) ===== */}
-        {/* <Route path="/instant-consultation" element={<InstantConsultation />} /> */}
       </Routes>
     </Router>
   );

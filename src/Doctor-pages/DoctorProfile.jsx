@@ -1,242 +1,237 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { 
-  FaSearch, FaBell, FaClipboardList, FaUserInjured, 
-  FaMapMarkerAlt, FaPhone, FaEdit, FaDownload, FaPlus,
-  FaStethoscope, FaPills, FaFlask, FaNotesMedical,
-  FaChevronLeft, FaChevronRight
-} from 'react-icons/fa';
-import DoctorSidebar from '../components/DoctorSidebar';
+import { FaEdit, FaDownload, FaPlus, FaMapMarkerAlt, FaPhone, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import Sidebar from '../components/Sidebar';
 
-const DoctorProfile = () => {
+const DoctorProfilePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   // Sample patient data
   const patient = {
-    id: 1,
+    id: id,
     name: 'Ahmed khalifa',
     age: 20,
     bloodType: 'O+',
     location: 'Blida, Boufarik',
     phone: '+213 55679875',
-    allergies: 'Penicillin',
+    allergies: ['Penicillin'],
     chronicDisease: 'None',
-    image: '/user-profile.png'
+    avatar: '/patient-avatar.png'
   };
 
   const medicalHistory = [
     { year: '2025', diagnosis: 'Migraine diagnosis' },
     { year: '2025', diagnosis: 'Migraine diagnosis' },
     { year: '2025', diagnosis: 'Migraine diagnosis' },
-    { year: '2024', diagnosis: 'Flu treatment' },
-    { year: '2024', diagnosis: 'Annual checkup' }
   ];
 
   const prescriptions = [
     { medication: 'Paracetamol', dosage: '500 mg', frequency: '1 tablet every 8 hours' },
-    { medication: 'Paracetamol', dosage: '500 mg', frequency: '1 tablet every 8 hours' }
+    { medication: 'Paracetamol', dosage: '500 mg', frequency: '1 tablet every 8 hours' },
   ];
 
   const labResults = [
-    { test: 'Blood Test', date: '10 march', status: 'Normal' }
+    { test: 'Blood Test', date: '10 march', status: 'Normal' },
   ];
 
   const doctorNotes = [
-    'Patient reports frequent headaches over the past two weeks.',
-    'Vital signs are stable.'
+    { note: 'Patient reports frequent headaches over the past two weeks.' },
+    { note: 'Vital signs are stable.' },
   ];
 
   return (
-    <div className="flex min-h-screen bg-[#F5F5FF]">
-    
-      <DoctorSidebar />
-      
+    <div className="flex min-h-screen" style={{ backgroundColor: '#E9E9F5' }}>
+      {/* Sidebar */}
+      <Sidebar type="doctor" />
+
       {/* Main Content */}
-      <div className="flex-1 ml-64 p-8">
-        {/* Top Header */}
-        <div className="flex items-center justify-between mb-8">
-          {/* Search Bar */}
-          <div className="relative w-96">
-            <input
-              type="text"
-              placeholder="Search Patient"
-              className="w-full px-4 py-2.5 rounded-lg border focus:outline-none focus:ring-2"
-              style={{ 
-                borderColor: '#41256E',
-                '--tw-ring-color': '#6D28D9'
-              }}
+      <div className="flex-1 p-6">
+        {/* Header */}
+        <div className="mb-6">
+          <h1 className="text-2xl font-bold flex items-center gap-2" style={{ color: '#6D28D9' }}>
+            <img 
+              src="/patients-icon.png" 
+              alt="Patients"
+              className="w-6 h-6"
+              style={{ filter: 'brightness(0) saturate(100%) invert(36%) sepia(94%) saturate(436%) hue-rotate(229deg) brightness(90%) contrast(96%)' }}
             />
-            <FaSearch className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
-          </div>
-
-          {/* Right Side Icons & Profile */}
-          <div className="flex items-center gap-6">
-            {/* Notifications */}
-            <div className="relative">
-              <FaClipboardList className="text-2xl cursor-pointer" style={{ color: '#6D28D9' }} />
-              <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                10
-              </span>
-            </div>
-            
-            <div className="relative">
-              <FaBell className="text-2xl cursor-pointer" style={{ color: '#6D28D9' }} />
-              <span className="absolute -top-2 -right-2 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">
-                10
-              </span>
-            </div>
-
-            {/* Profile */}
-            <div className="flex items-center gap-3 pl-6" style={{ borderLeft: '1px solid #41256E' }}>
-              <div className="w-12 h-12 rounded-full bg-[#6D28D9] flex items-center justify-center">
-                <span className="text-white text-xl font-bold">DA</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-gray-800">Dr. Amine</h3>
-                <p className="text-xs text-gray-500">Cardiologist</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Patient Medical Record Title */}
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold" style={{ color: '#41256E' }}>
             Patient Medical Record
-          </h2>
-          <FaDownload className="text-2xl cursor-pointer" style={{ color: '#6D28D9' }} />
+          </h1>
         </div>
 
         {/* Patient Info Card */}
-        <div className="rounded-xl p-6 mb-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.1)', border: '1px solid #41256E' }}>
-          <div className="flex items-start justify-between">
-            <div className="flex items-start gap-4">
+        <div 
+          className="p-6 rounded-xl border border-[#41256E]/30 mb-6"
+          style={{ backgroundColor: 'rgba(109, 40, 217, 0.08)' }}
+        >
+          <div className="flex items-start justify-between mb-4">
+            <div className="flex items-center gap-4">
               {/* Patient Avatar */}
-              <div className="w-20 h-20 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
-                <FaUserInjured className="text-4xl text-gray-600" />
+              <div className="w-16 h-16 rounded-full border-2 border-[#6D28D9] flex items-center justify-center bg-white">
+                <img 
+                  src={patient.avatar} 
+                  alt={patient.name}
+                  className="w-full h-full rounded-full object-cover"
+                  onError={(e) => {
+                    e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" fill="%236D28D9" viewBox="0 0 24 24"%3E%3Cpath d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/%3E%3C/svg%3E';
+                  }}
+                />
               </div>
               
-              {/* Patient Details */}
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="text-xl font-bold text-gray-800">{patient.name}</h3>
-                  <button 
-                    className="px-4 py-1.5 rounded-lg text-sm font-medium text-white"
-                    style={{ backgroundColor: '#6D28D9' }}
-                  >
-                    <FaEdit className="inline mr-1" />
-                    Edit
-                  </button>
+              {/* Patient Info */}
+              <div>
+                <h2 className="text-xl font-bold text-gray-800">{patient.name}</h2>
+                <div className="flex items-center gap-4 mt-1 text-sm text-gray-600">
+                  <span>Age: {patient.age}</span>
+                  <span>Blood Type: {patient.bloodType}</span>
                 </div>
-                
-                <div className="grid grid-cols-2 gap-x-8 gap-y-2 text-sm text-gray-600 mb-3">
-                  <div>Age: <span className="font-semibold">{patient.age}</span></div>
-                  <div>Blood Type: <span className="font-semibold">{patient.bloodType}</span></div>
-                </div>
-
-                <div className="flex gap-6 mb-3">
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <FaMapMarkerAlt style={{ color: '#6D28D9' }} />
+                <div className="flex items-center gap-4 mt-2 text-sm">
+                  <div className="flex items-center gap-1 text-gray-600">
+                    <FaMapMarkerAlt className="text-[#6D28D9]" />
                     <span>{patient.location}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-sm text-gray-600">
-                    <FaPhone style={{ color: '#6D28D9' }} />
+                  <div className="flex items-center gap-1 text-gray-600">
+                    <FaPhone className="text-[#6D28D9] text-xs" />
                     <span>{patient.phone}</span>
                   </div>
                 </div>
-
-                <div className="flex gap-4">
-                  <div className="px-4 py-1.5 rounded-full text-sm" style={{ backgroundColor: 'rgba(109, 40, 217, 0.2)', border: '1px solid #41256E' }}>
-                    Allergies: <span className="font-semibold">Penicillin</span>
-                  </div>
-                  <div className="px-4 py-1.5 rounded-full text-sm" style={{ backgroundColor: 'rgba(109, 40, 217, 0.2)', border: '1px solid #41256E' }}>
-                    Chronic Disease: <span className="font-semibold">None</span>
-                  </div>
-                </div>
               </div>
+            </div>
+
+            {/* Edit Button */}
+            <button 
+              className="px-4 py-2 text-white rounded-lg font-medium flex items-center gap-2 hover:opacity-90 transition"
+              style={{ backgroundColor: '#6D28D9' }}
+            >
+              <FaEdit className="text-sm" />
+              <span>Edit</span>
+            </button>
+          </div>
+
+          {/* Allergies & Chronic Disease */}
+          <div className="flex items-center gap-4 mt-4 pt-4 border-t border-[#41256E]/20">
+            <div className="px-4 py-2 rounded-lg border border-[#41256E]/30" style={{ backgroundColor: 'rgba(109, 40, 217, 0.05)' }}>
+              <span className="text-sm text-gray-700">
+                <span className="font-semibold">Allergies:</span> {patient.allergies.join(', ')}
+              </span>
+            </div>
+            <div className="px-4 py-2 rounded-lg border border-[#41256E]/30" style={{ backgroundColor: 'rgba(109, 40, 217, 0.05)' }}>
+              <span className="text-sm text-gray-700">
+                <span className="font-semibold">Chronic Disease:</span> {patient.chronicDisease}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Four Sections Grid */}
-        <div className="grid grid-cols-2 gap-6">
+        {/* Grid Sections */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Medical History */}
-          <div className="rounded-xl p-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.1)', border: '1px solid #41256E' }}>
+          <div 
+            className="p-5 rounded-xl border border-[#41256E]/30"
+            style={{ backgroundColor: 'rgba(109, 40, 217, 0.05)' }}
+          >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <FaStethoscope style={{ color: '#6D28D9' }} />
-                <h3 className="text-lg font-bold text-gray-800">Medical History</h3>
-              </div>
-              <FaPlus className="text-xl cursor-pointer" style={{ color: '#6D28D9' }} />
+              <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: '#6D28D9' }}>
+                <img 
+                  src="/medical-history-icon.png" 
+                  alt="Medical History"
+                  className="w-5 h-5"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(36%) sepia(94%) saturate(436%) hue-rotate(229deg) brightness(90%) contrast(96%)' }}
+                />
+                Medical History
+              </h3>
+              <button className="text-[#6D28D9] hover:opacity-80">
+                <FaPlus />
+              </button>
             </div>
-            
-            <div className="space-y-3 mb-4">
-              {medicalHistory.map((item, idx) => (
-                <div key={idx} className="text-sm">
-                  <span className="font-semibold text-gray-800">{item.year}:</span>
-                  <span className="text-gray-600 ml-2">{item.diagnosis}</span>
+            <div className="space-y-2">
+              {medicalHistory.map((item, index) => (
+                <div key={index} className="text-sm text-gray-700">
+                  <span className="font-semibold">-{item.year}:</span> {item.diagnosis}
                 </div>
               ))}
             </div>
-
             {/* Pagination */}
-            <div className="flex items-center justify-center gap-2 pt-4 border-t" style={{ borderColor: '#41256E' }}>
-              <FaChevronLeft className="cursor-pointer" style={{ color: '#6D28D9' }} />
-              {[1, 2, 3, 4, 5].map((page) => (
-                <span 
-                  key={page}
-                  className={`w-6 h-6 flex items-center justify-center rounded text-sm cursor-pointer ${
-                    page === 1 ? 'text-white' : 'text-gray-600'
+            <div className="flex items-center justify-center gap-1 mt-4 pt-4 border-t border-[#41256E]/20">
+              {[1, 2, 3, 4, 5].map((num) => (
+                <button
+                  key={num}
+                  className={`w-7 h-7 rounded text-sm font-medium ${
+                    num === 1 
+                      ? 'bg-[#6D28D9] text-white' 
+                      : 'text-gray-600 hover:bg-[#6D28D9]/10'
                   }`}
-                  style={page === 1 ? { backgroundColor: '#6D28D9' } : {}}
                 >
-                  {page}
-                </span>
+                  {num}
+                </button>
               ))}
-              <FaChevronRight className="cursor-pointer" style={{ color: '#6D28D9' }} />
+              <button className="text-[#6D28D9] hover:opacity-80">
+                <FaChevronRight className="text-sm" />
+              </button>
             </div>
           </div>
 
           {/* Prescriptions */}
-          <div className="rounded-xl p-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.1)', border: '1px solid #41256E' }}>
+          <div 
+            className="p-5 rounded-xl border border-[#41256E]/30"
+            style={{ backgroundColor: 'rgba(109, 40, 217, 0.05)' }}
+          >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <FaPills style={{ color: '#6D28D9' }} />
-                <h3 className="text-lg font-bold text-gray-800">Prescriptions</h3>
-              </div>
-              <FaPlus className="text-xl cursor-pointer" style={{ color: '#6D28D9' }} />
+              <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: '#6D28D9' }}>
+                <img 
+                  src="/prescription-icon.png" 
+                  alt="Prescriptions"
+                  className="w-5 h-5"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(36%) sepia(94%) saturate(436%) hue-rotate(229deg) brightness(90%) contrast(96%)' }}
+                />
+                Prescriptions
+              </h3>
+              <button className="text-[#6D28D9] hover:opacity-80">
+                <FaPlus />
+              </button>
             </div>
-            
-            <div className="space-y-4">
-              {prescriptions.map((prescription, idx) => (
-                <div key={idx} className="p-3 rounded-lg" style={{ backgroundColor: 'rgba(109, 40, 217, 0.15)' }}>
-                  <p className="font-semibold text-gray-800">{prescription.medication} <span className="text-sm font-normal">{prescription.dosage}</span></p>
-                  <p className="text-sm text-gray-600 mt-1">{prescription.frequency}</p>
+            <div className="space-y-3">
+              {prescriptions.map((item, index) => (
+                <div key={index} className="pb-3 border-b border-[#41256E]/20 last:border-b-0">
+                  <div className="flex items-center justify-between text-sm font-semibold text-gray-800">
+                    <span>{item.medication}</span>
+                    <span>{item.dosage}</span>
+                  </div>
+                  <p className="text-xs text-gray-600 mt-1">{item.frequency}</p>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Lab Results */}
-          <div className="rounded-xl p-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.1)', border: '1px solid #41256E' }}>
+          <div 
+            className="p-5 rounded-xl border border-[#41256E]/30"
+            style={{ backgroundColor: 'rgba(109, 40, 217, 0.05)' }}
+          >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <FaFlask style={{ color: '#6D28D9' }} />
-                <h3 className="text-lg font-bold text-gray-800">Lab Results</h3>
-              </div>
-              <FaPlus className="text-xl cursor-pointer" style={{ color: '#6D28D9' }} />
+              <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: '#6D28D9' }}>
+                <img 
+                  src="/lab-icon.png" 
+                  alt="Lab Results"
+                  className="w-5 h-5"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(36%) sepia(94%) saturate(436%) hue-rotate(229deg) brightness(90%) contrast(96%)' }}
+                />
+                Lab Results
+              </h3>
+              <button className="text-[#6D28D9] hover:opacity-80">
+                <FaPlus />
+              </button>
             </div>
-            
             <div className="space-y-3">
-              {labResults.map((result, idx) => (
-                <div key={idx} className="flex items-center justify-between p-3 rounded-lg" style={{ backgroundColor: 'rgba(109, 40, 217, 0.15)' }}>
+              {labResults.map((item, index) => (
+                <div key={index} className="flex items-center justify-between pb-3 border-b border-[#41256E]/20 last:border-b-0">
                   <div>
-                    <p className="font-semibold text-gray-800">{result.test}</p>
-                    <p className="text-sm text-gray-600">{result.date}</p>
+                    <p className="text-sm font-semibold text-gray-800">{item.test}</p>
+                    <p className="text-xs text-gray-600">{item.date}</p>
                   </div>
-                  <span className="px-3 py-1 rounded-full text-xs font-medium" style={{ backgroundColor: '#10b981', color: 'white' }}>
-                    {result.status}
+                  <span className="px-3 py-1 text-xs font-medium rounded-full bg-green-100 text-green-700">
+                    {item.status}
                   </span>
                 </div>
               ))}
@@ -244,28 +239,39 @@ const DoctorProfile = () => {
           </div>
 
           {/* Doctor Notes */}
-          <div className="rounded-xl p-6" style={{ backgroundColor: 'rgba(109, 40, 217, 0.1)', border: '1px solid #41256E' }}>
+          <div 
+            className="p-5 rounded-xl border border-[#41256E]/30"
+            style={{ backgroundColor: 'rgba(109, 40, 217, 0.05)' }}
+          >
             <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <FaNotesMedical style={{ color: '#6D28D9' }} />
-                <h3 className="text-lg font-bold text-gray-800">Doctor Notes</h3>
-              </div>
-              <FaPlus className="text-xl cursor-pointer" style={{ color: '#6D28D9' }} />
+              <h3 className="text-lg font-semibold flex items-center gap-2" style={{ color: '#6D28D9' }}>
+                <img 
+                  src="/notes-icon.png" 
+                  alt="Doctor Notes"
+                  className="w-5 h-5"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(36%) sepia(94%) saturate(436%) hue-rotate(229deg) brightness(90%) contrast(96%)' }}
+                />
+                Doctor Notes
+              </h3>
+              <button className="text-[#6D28D9] hover:opacity-80">
+                <FaPlus />
+              </button>
             </div>
-            
             <div className="space-y-3">
-              {doctorNotes.map((note, idx) => (
-                <div key={idx} className="text-sm text-gray-600">
-                  <span className="text-gray-400 mr-2">-</span>
-                  {note}
+              {doctorNotes.map((item, index) => (
+                <div key={index} className="text-sm text-gray-700">
+                  <p>{item.note}</p>
                 </div>
               ))}
             </div>
-
             {/* Navigation */}
-            <div className="flex items-center justify-center gap-4 pt-4 border-t mt-4" style={{ borderColor: '#41256E' }}>
-              <FaChevronLeft className="cursor-pointer" style={{ color: '#6D28D9' }} />
-              <FaChevronRight className="cursor-pointer" style={{ color: '#6D28D9' }} />
+            <div className="flex items-center justify-end gap-2 mt-4 pt-4 border-t border-[#41256E]/20">
+              <button className="text-[#6D28D9] hover:opacity-80">
+                <FaChevronLeft className="text-sm" />
+              </button>
+              <button className="text-[#6D28D9] hover:opacity-80">
+                <FaChevronRight className="text-sm" />
+              </button>
             </div>
           </div>
         </div>
@@ -274,4 +280,4 @@ const DoctorProfile = () => {
   );
 };
 
-export default DoctorProfile;
+export default DoctorProfilePage;
