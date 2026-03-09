@@ -48,15 +48,15 @@ The project focuses on building a Minimum Viable Product (MVP) that demonstrates
 ---
 
 # Tech Stack
+# Tech Stack
 
 ### Frontend
-- :contentReference[oaicite:1]{index=1} 19.2.0  
-- :contentReference[oaicite:2]{index=2} 3.4.19  
+- ⚛️ React 19.2.0
+- 🎨 Tailwind CSS 3.4.19
 
 ### Tools
-- :contentReference[oaicite:3]{index=3} – Version control  
-- :contentReference[oaicite:4]{index=4} – Deployment  
-
+- 🐙 GitHub – Version control
+- ▲ Vercel – Deployment
 ---
 
 # Installation
